@@ -1,0 +1,20 @@
+{
+  "name": "multer-aws-s3",
+  "version": "1.0.0",
+  "description": "AWS S3 storage engine for multer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "multer",
+    "aws",
+    "s3"
+  ],
+  "author": "Heinrich Fenkart <hnrch02@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.4.0",
+    "lodash.defaults": "^4.0.1"
+  }
+}
