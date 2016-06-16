@@ -2,6 +2,7 @@ var Promise = require('bluebird')
 var path = require('path')
 var defaults = require('lodash.defaults')
 var random = Promise.promisify(require('crypto').randomBytes)
+var mime = require('mime-types')
 
 function getDestination (req, file, opts, cb) {
   random(16).then(function(raw) {
@@ -25,7 +26,7 @@ S3Storage.prototype._handleFile = function _handleFile (req, file, cb) {
     instance.opts.destination(req, file, instance.opts, function (err, destination) {
       if (err) return cb(err)
 
-      instance.s3.upload({ Body: stream, Key: destination }, function (err, data) {
+      instance.s3.upload({ Body: stream, Key: destination, ContentType: mime.lookup(file.originalname) || 'application/octet-stream' }, function (err, data) {
         if (err) return cb(err)
 
         cb(null, {
